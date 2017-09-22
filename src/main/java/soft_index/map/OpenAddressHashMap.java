@@ -12,25 +12,25 @@ public class OpenAddressHashMap implements CustomMap {
     }
 
     @Override
-    public boolean put(int key, long value) {
+    public Long put(int key, long value) {
         int h = calculateHash(key);
         try {
             Pair pair = table[key];
             if (Objects.isNull(pair)) {
                 table[key] = new Pair(key, value);
                 size++;
-                return true;
+                return null;
             }
 //            for (int i = key + 1)
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return false;
+        return null;
     }
 
     @Override
-    public long get(int key) {
+    public Long get(int key) {
         return Objects.isNull(table[key]) ? null : table[key].getValue();
     }
 

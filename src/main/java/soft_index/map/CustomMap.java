@@ -2,9 +2,9 @@ package soft_index.map;
 
 public interface CustomMap {
 
-    boolean put(int key, long value);
+    Long put(int key, long value);
 
-    long get(int key);
+    Long get(int key);
 
     int size();
 }
