@@ -24,11 +24,17 @@ public class OpenAddressHashMap implements CustomMap {
     public Long put(int key, long value) {
         int h = calculateHash(key);
         int i = 0;
+
+        // All bucket are occupied. Need to create bigger table
+        if (size == table.length) {
+            moveTableToBigger(table.length * 2);
+        }
+
         Pair pair = table[h];
 
         // The bucket is empty or contains the same key
         if (Objects.isNull(pair) || pair.getKey() == key) {
-            table[key] = new Pair(key, value);
+            table[h] = new Pair(key, value);
             size = Objects.isNull(pair) ? ++size : size;
             return Objects.isNull(pair) ? null : pair.getValue();
         }
@@ -49,8 +55,16 @@ public class OpenAddressHashMap implements CustomMap {
     public Long get(int key) {
         int h = calculateHash(key);
 
-//        while ()
-        return Objects.isNull(table[key]) ? null : table[key].getValue();
+        if (Objects.isNull(table[h])) {
+            return null;
+        }
+        while (Objects.nonNull(table[h])) {
+            if (table[h].getKey() == key) {
+                return table[h].getValue();
+            }
+            h = (h + 1) % table.length;
+        }
+        return null;
     }
 
     @Override
@@ -60,5 +74,14 @@ public class OpenAddressHashMap implements CustomMap {
 
     private int calculateHash(int key) {
         return Math.abs(key) % table.length;
+    }
+
+    private void moveTableToBigger(int size) {
+        Pair[] tmpTable = table;
+        table = new Pair[size];
+        this.size = 0;
+        for (int i = 0; i < tmpTable.length; i++) {
+            put(tmpTable[i].getKey(), tmpTable[i].getValue());
+        }
     }
 }
