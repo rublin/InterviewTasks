@@ -1,4 +1,4 @@
-package soft_index.map;
+package ua.com.softindex.map;
 
 import org.junit.Test;
 
