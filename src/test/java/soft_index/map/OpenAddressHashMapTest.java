@@ -24,12 +24,14 @@ public class OpenAddressHashMapTest {
     public void get() throws Exception {
         OpenAddressHashMap map = new OpenAddressHashMap();
         map.put(1, 1L);
+        map.put(-2, 2L);
 
-        Long result = map.get(1);
-        assertEquals(Long.valueOf(1), result);
+        assertEquals(Long.valueOf(1), map.get(1));
+        assertEquals(Long.valueOf(2), map.get(2));
+        assertTrue(Objects.isNull(map.get(3)));
 
-        result = map.get(2);
-        assertTrue(Objects.isNull(result));
+        map.put(1, 11L);
+        assertEquals(Long.valueOf(11), map.get(1));
     }
 
     @Test
@@ -45,6 +47,9 @@ public class OpenAddressHashMapTest {
 
         map.put(2, 3L);
         assertEquals(2, map.size());
+
+        map.put(-1, 1L);
+        assertEquals(3, map.size());
     }
 
 }
