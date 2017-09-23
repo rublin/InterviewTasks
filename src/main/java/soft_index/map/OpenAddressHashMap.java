@@ -29,7 +29,7 @@ public class OpenAddressHashMap implements CustomMap {
         // The bucket is empty or contains the same key
         if (Objects.isNull(pair) || pair.getKey() == key) {
             table[key] = new Pair(key, value);
-            size++;
+            size = Objects.isNull(pair) ? ++size : size;
             return Objects.isNull(pair) ? null : pair.getValue();
         }
 
@@ -38,7 +38,7 @@ public class OpenAddressHashMap implements CustomMap {
             pair = table[i];
             if (Objects.isNull(pair) || pair.getKey() == key) {
                 table[i] = new Pair(key, value);
-                size++;
+                size = Objects.isNull(pair) ? ++size : size;
                 return Objects.isNull(pair) ? null : pair.getValue();
             }
         }
@@ -49,6 +49,7 @@ public class OpenAddressHashMap implements CustomMap {
     public Long get(int key) {
         int h = calculateHash(key);
 
+//        while ()
         return Objects.isNull(table[key]) ? null : table[key].getValue();
     }
 
@@ -57,34 +58,7 @@ public class OpenAddressHashMap implements CustomMap {
         return size;
     }
 
-    // ToDo implement this method
     private int calculateHash(int key) {
         return Math.abs(key) % table.length;
-//        return Math.abs(key);
     }
-
-    /*
-    public boolean push(T1 x, T2 y) {
-        int h = returnHash(x);
-        int i=0;
-        try{
-            if (table[h].isDeleted() ) {
-                table[h] = new Pair(x, y);
-                return true;
-            }
-            for (i = h + 1; i != h; i = (i + 1) % table.length) {
-                if (table[i].isDeleted() || table[i].getKey() == x) {
-                    table[i] = new Pair(x, y);
-                    return true;
-                }
-            }
-            return false;
-        } catch(NullPointerException e) {
-            table[h] = new Pair(x, y);
-            return true;
-        }
-    }
-
-
-    */
 }
