@@ -13,6 +13,8 @@ public class OpenAddressHashMapTest {
         OpenAddressHashMap map = new OpenAddressHashMap();
         Long put = map.put(1, 1L);
         assertTrue(Objects.isNull(put));
+        put = map.put(2, 1L);
+        assertTrue(Objects.isNull(put));
         put = map.put(-1, 1L);
         assertTrue(Objects.isNull(put));
 
@@ -22,6 +24,7 @@ public class OpenAddressHashMapTest {
 
     @Test
     public void get() throws Exception {
+//        System.out.println(6 % 11);
         OpenAddressHashMap map = new OpenAddressHashMap();
         map.put(1, 1L);
         map.put(-2, 2L);
