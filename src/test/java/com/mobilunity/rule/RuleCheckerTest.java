@@ -9,14 +9,15 @@ public class RuleCheckerTest {
 
     @Test
     public void checkLength() throws Exception {
-        assertEquals(Resolution.PASS, checker.checkRules("A1!q"));
+        assertEquals(Resolution.PASS, checker.checkRules("A1_q"));
         assertEquals("Length can't be too short", Resolution.FAIL, checker.checkRules("A1#"));
         assertEquals("Length can't be too long", Resolution.FAIL, checker.checkRules("Am@Z1ng4Am@Z1ng4Am@Z1ng4Am@Z1ng4frv"));
     }
 
     @Test
     public void checkLetter() throws Exception {
-        assertEquals(Resolution.PASS, checker.checkRules("Am@Z1ng4"));
+        assertEquals(Resolution.PASS, checker.checkRules("A4@5"));
+        assertEquals(Resolution.FAIL, checker.checkRules("a4@5a"));
         assertEquals("Username should contain at least one letter", Resolution.FAIL, checker.checkRules("@2134!4"));
     }
 

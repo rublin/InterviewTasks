@@ -15,6 +15,12 @@ public class RuleChecker {
         rules.add(new SpaceRule());
     }
 
+    /**
+     * Check {@link String} to all rules
+     * @param name {@link String}
+     * @return {@link Resolution#PASS} if all rules passed
+     *          and {@link Resolution#FAIL} if any rule is not passed
+     */
     public Resolution checkRules(String name) {
         for (Rule rule : rules) {
             boolean check = rule.check(name);
