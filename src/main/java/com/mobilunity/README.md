@@ -18,7 +18,7 @@ If a username fails the conditions, the program should print FAIL (in uppercase)
 
 ## Implementation
 
-Run Main.java and type:
+Run [Main.java](https://github.com/rublin/InterviewTasks/blob/master/src/main/java/com/mobilunity/Main.java) and type:
 * Am@Z1ng4
 * Bob_42#
 * Alf
@@ -31,4 +31,4 @@ You will receive:
 * FAIL
 * FAIL
 
-Test is RuleCheckerTest.
+Test is in [RuleCheckerTest.java](https://github.com/rublin/InterviewTasks/blob/master/src/test/java/com/mobilunity/rule/RuleCheckerTest.java).
