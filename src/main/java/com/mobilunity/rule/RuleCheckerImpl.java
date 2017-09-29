@@ -2,6 +2,7 @@ package com.mobilunity.rule;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RuleCheckerImpl implements RuleChecker {
     private List<Rule> rules;
@@ -23,6 +24,9 @@ public class RuleCheckerImpl implements RuleChecker {
      */
     @Override
     public Resolution checkRules(String name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException("Value can't be NULL");
+        }
         for (Rule rule : rules) {
             boolean check = rule.check(name);
             if (!check) {

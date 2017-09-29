@@ -49,4 +49,9 @@ public class RuleCheckerTest {
         assertEquals("Username should not contain space", Resolution.FAIL, checker.checkRules("Am@Z1ng4 "));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNull() throws Exception {
+        checker.checkRules(null);
+    }
+
 }
