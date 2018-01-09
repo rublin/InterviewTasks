@@ -17,4 +17,4 @@ By Stream result is: true; time is: 415
 #################################################
 ```
 З.Ы. На самом собеседовании использовал самый простой способ - через **HashSet**. Но это решение показалось не оптимальным для интервьюера.
-[Решение](https://github.com/rublin/InterviewTasks/blob/master/src/arrays/Duplicates.java)
+[Решение](https://github.com/rublin/InterviewTasks/blob/master/src/main/java/arrays/Duplicates.java)
